@@ -3,6 +3,7 @@ package ie.atu.week5.service;
 import ie.atu.week5.model.Passenger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 
@@ -52,7 +53,18 @@ public class PassengerServiceTest {
 
     }
 
+    @Test
+    void deleteFAIL(){
+        boolean response = service.delete("P1");
+        assertEquals(response, false);
+    }
 
+    @Test
+    void delete(){
+        service.create(new Passenger("P1", "Bob", "bob@atu.ie"));
+        boolean response = service.delete("P1");
+        assertEquals(response, true);
+    }
 
 
 

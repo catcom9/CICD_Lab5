@@ -43,5 +43,15 @@ public class PassengerService {
         }
         throw new IllegalArgumentException("PassengerId does not exisit");
     }
+
+    public boolean delete(String id) {
+        for (int i = 0; i != store.size(); i++){
+            if (store.get(i).getPassengerId().equals(id)){
+                store.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
 }
 
