@@ -35,6 +35,26 @@ public class PassengerServiceTest {
                 service.create(new Passenger("P2", "Bob", "bob@atu.ie")));
     }
 
+    @Test
+    void updateNameTestFail(){
+        service.create(new Passenger("P2", "Bob", "bob@atu.ie"));
+
+        assertThrows(IllegalArgumentException.class, () ->
+                service.updateName("P3", "Joe"));
+    }
+
+    @Test
+    void updateNameTest(){
+        service.create(new Passenger("P2", "Bob", "bob@atu.ie"));
+        Optional<Passenger> found = service.updateName("P2", "Joe");
+        assertTrue(found.isPresent());
+        assertEquals("Joe", found.get().getName());
+
+    }
+
+
+
+
 
 
 }

@@ -42,5 +42,14 @@ public class PassengerController {
                 .body(created);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Passenger> updateName(@PathVariable String id, @Valid @RequestBody String newName){
+        Optional<Passenger> maybe = service.updateName(id, newName);
+        if(maybe.isPresent()){
+            return ResponseEntity.ok(maybe.get());
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 
 }

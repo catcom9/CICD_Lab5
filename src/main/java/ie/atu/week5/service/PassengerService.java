@@ -32,6 +32,16 @@ public class PassengerService {
         return p;
     }
 
-
+    public Optional<Passenger> updateName(String id,String name){
+        for (int i = 0; i != store.size(); i++){
+            if (store.get(i).getPassengerId().equals(id)){
+                Passenger p = store.get(i);
+                p.setName(name);
+                store.set(i, p);
+                return Optional.of(p);
+            }
+        }
+        throw new IllegalArgumentException("PassengerId does not exisit");
+    }
 }
 
